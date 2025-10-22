@@ -99,7 +99,7 @@ A comprehensive, modern SaaS platform featuring AI-powered tools, social media i
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/saas-platform.git
+   git clone https://github.com/codgamerofficial/saas-platform.git
    cd saas-platform
    ```
 
@@ -111,10 +111,10 @@ A comprehensive, modern SaaS platform featuring AI-powered tools, social media i
 3. **Environment Setup**
    ```bash
    # Copy environment template
-   cp backend/.env.example backend/.env
+   copy backend\.env.example backend\.env
 
    # Configure your environment variables
-   nano backend/.env
+   notepad backend\.env
    ```
 
 4. **Start development servers**
@@ -125,6 +125,168 @@ A comprehensive, modern SaaS platform featuring AI-powered tools, social media i
 5. **Access the application**
    - Frontend: http://localhost:3000
    - Backend API: http://localhost:5000
+
+## 🌐 **Deployment**
+
+### **Option 1: Netlify + Railway (Recommended)**
+
+#### **Step 1: Deploy Backend to Railway**
+1. **Sign up** at [railway.app](https://railway.app)
+2. **Connect GitHub** repository to Railway
+3. **Deploy backend**:
+   ```bash
+   # Railway will auto-detect Node.js and Procfile
+   # Set environment variables in Railway dashboard
+   ```
+4. **Copy the backend URL** (e.g., `https://your-app.railway.app`)
+
+#### **Step 2: Deploy Frontend to Netlify**
+1. **Sign up** at [netlify.com](https://netlify.com)
+2. **Connect GitHub** repository to Netlify
+3. **Configure build settings**:
+   - Build command: `cd frontend && npm install && npm run build`
+   - Publish directory: `frontend/build`
+4. **Set environment variables** in Netlify dashboard:
+   ```
+   REACT_APP_API_URL=https://your-backend-app.railway.app
+   ```
+5. **Deploy** - Netlify will auto-deploy on pushes
+
+#### **Step 3: Update API Configuration**
+Update `frontend/.env.production`:
+```env
+REACT_APP_API_URL=https://your-backend-app.railway.app
+```
+
+### **Option 2: Heroku (Full Stack)**
+
+#### **Deploy Backend**
+```bash
+# Install Heroku CLI
+curl https://cli-assets.heroku.com/install.sh | sh
+
+# Create and deploy backend
+heroku create saas-platform-backend
+heroku config:set NODE_ENV=production
+heroku config:set MONGODB_URI=your-mongodb-uri
+heroku config:set JWT_SECRET=your-jwt-secret
+git push heroku master
+```
+
+#### **Deploy Frontend**
+```bash
+# Build frontend
+cd frontend
+npm install
+npm run build
+cd ..
+
+# Deploy to Netlify or serve from Heroku
+heroku create saas-platform-frontend
+# Configure static site deployment
+```
+
+### **Option 3: DigitalOcean App Platform**
+
+1. **Go to** [DigitalOcean App Platform](https://cloud.digitalocean.com/apps)
+2. **Create new app** from GitHub repository
+3. **Configure backend**:
+   - Environment: Node.js
+   - Build command: `cd backend && npm install`
+   - Start command: `npm start`
+4. **Configure frontend**:
+   - Environment: Static Site
+   - Build command: `cd frontend && npm install && npm run build`
+   - Publish directory: `frontend/build`
+5. **Set environment variables** for backend
+6. **Deploy** automatically
+
+### **Environment Variables Setup**
+
+#### **Backend (.env)**
+```env
+NODE_ENV=production
+PORT=5000
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/saas-platform
+JWT_SECRET=your-super-secret-jwt-key-here
+JWT_EXPIRE=7d
+OPENAI_API_KEY=your-openai-api-key-here
+FRONTEND_URL=https://your-netlify-site.netlify.app
+```
+
+#### **Frontend (.env.production)**
+```env
+REACT_APP_API_URL=https://your-backend-app.herokuapp.com
+REACT_APP_ENVIRONMENT=production
+```
+
+### **MongoDB Setup**
+
+#### **Option 1: MongoDB Atlas (Cloud)**
+1. **Go to** [MongoDB Atlas](https://cloud.mongodb.com)
+2. **Create free cluster** (M0 Sandbox)
+3. **Create database user** and get connection string
+4. **Whitelist your IP** or use 0.0.0.0/0 for all
+5. **Set MONGODB_URI** in your deployment platform
+
+#### **Option 2: Local MongoDB**
+```bash
+# Install MongoDB locally
+# Set MONGODB_URI=mongodb://localhost:27017/saas-platform
+```
+
+### **Automated Deployment Script**
+
+Run the deployment script for guided setup:
+```bash
+# On Windows
+deploy.bat
+
+# On macOS/Linux
+chmod +x deploy.sh
+./deploy.sh
+```
+
+### **Post-Deployment Steps**
+
+1. **Update API URLs** in frontend configuration
+2. **Set up custom domains** (optional)
+3. **Configure CDN** for global performance
+4. **Set up monitoring** (optional)
+5. **Enable analytics** (Google Analytics, etc.)
+
+### **Deployment URLs**
+
+After deployment, your application will be available at:
+- **Frontend:** `https://your-site.netlify.app`
+- **Backend:** `https://your-backend.herokuapp.com`
+- **Admin Panel:** `https://your-site.netlify.app/admin`
+
+### **Troubleshooting**
+
+#### **Common Issues**
+
+**Build Fails:**
+- Check Node.js version (18+ required)
+- Verify all dependencies are installed
+- Check environment variables
+
+**API Connection Issues:**
+- Ensure backend is deployed and running
+- Check CORS configuration
+- Verify API URL in frontend
+
+**Database Connection:**
+- Verify MongoDB connection string
+- Check IP whitelisting
+- Ensure database user permissions
+
+#### **Performance Optimization**
+
+- Enable gzip compression
+- Set up CDN for static assets
+- Configure caching headers
+- Optimize images and fonts
 
 ## 📁 **Project Structure**
 
