@@ -1,0 +1,31 @@
+{
+  "name": "saas-platform",
+  "version": "1.0.0",
+  "description": "Comprehensive SaaS platform with AI-powered features and modern 3D UI",
+  "main": "backend/server.js",
+  "scripts": {
+    "install-all": "cd backend && npm install && cd ../frontend && npm install",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\"",
+    "start": "cd backend && npm start",
+    "build": "cd frontend && npm run build",
+    "test": "cd backend && npm test"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": [
+    "saas",
+    "platform",
+    "ai",
+    "3d",
+    "react",
+    "nodejs",
+    "mongodb"
+  ],
+  "author": "SaaS Platform",
+  "license": "MIT",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ]
+}

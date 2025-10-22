@@ -1,0 +1,191 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# Next.js build output
+.next
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+public
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Temporary folders
+tmp/
+temp/
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# File uploads (in production, these should be in cloud storage)
+uploads/*
+!uploads/.gitkeep
+
+# Temporary files
+temp/*
+!temp/.gitkeep
+
+# Database files (if using local SQLite)
+*.db
+*.sqlite
+*.sqlite3
+
+# API keys and secrets
+config/secrets.json
+secrets.json
+
+# PM2
+.pm2
+
+# Local development
+.env.local
+.env.development
+.env.test
+
+# Production build
+/build
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Testing
+coverage/
+.nyc_output/
+test-results/
+playwright-report/
+
+# Linting
+.eslintcache
+
+# TypeScript
+*.tsbuildinfo
+
+# Optional REPL history
+.node_repl_history
+
+# Zero-Install artifacts
+.pnp.*
+.zip
+
+# Turbo
+.turbo
+
+# Vercel
+.vercel
+
+# Sentry Config File
+.sentryclirc
+
+# Storybook
+storybook-static/
+
+# React Three Fiber
+*.gltf
+*.glb
+*.obj
+*.fbx
+
+# Canvas dependencies (Windows)
+*.dll
+*.exe
+
+# Sharp dependencies (Windows)
+GTK/
