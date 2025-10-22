@@ -133,12 +133,20 @@ A comprehensive, modern SaaS platform featuring AI-powered tools, social media i
 #### **Step 1: Deploy Backend to Railway**
 1. **Sign up** at [railway.app](https://railway.app)
 2. **Connect GitHub** repository to Railway
-3. **Deploy backend**:
+3. **Railway will automatically**:
+   - Detect Node.js project
+   - Use the `Procfile` for startup
+   - Install dependencies with `npm ci`
+4. **Set environment variables** in Railway dashboard:
    ```bash
-   # Railway will auto-detect Node.js and Procfile
-   # Set environment variables in Railway dashboard
+   # Copy from backend/.env.railway template
+   MONGODB_URI=mongodb+srv://your-mongodb-uri
+   JWT_SECRET=your-secret-key
+   OPENAI_API_KEY=your-openai-key
+   FRONTEND_URL=https://your-netlify-site.netlify.app
    ```
-4. **Copy the backend URL** (e.g., `https://your-app.railway.app`)
+5. **Deploy** - Railway will build and start your backend
+6. **Copy the Railway URL** (e.g., `https://your-app.railway.app`)
 
 #### **Step 2: Deploy Frontend to Netlify**
 1. **Sign up** at [netlify.com](https://netlify.com)
@@ -148,15 +156,68 @@ A comprehensive, modern SaaS platform featuring AI-powered tools, social media i
    - Publish directory: `frontend/build`
 4. **Set environment variables** in Netlify dashboard:
    ```
-   REACT_APP_API_URL=https://your-backend-app.railway.app
+   REACT_APP_API_URL=https://your-railway-app.railway.app
    ```
 5. **Deploy** - Netlify will auto-deploy on pushes
 
-#### **Step 3: Update API Configuration**
-Update `frontend/.env.production`:
-```env
-REACT_APP_API_URL=https://your-backend-app.railway.app
+#### **Railway Deployment Troubleshooting**
+
+**Common Railway Issues & Solutions:**
+
+**❌ Build Fails:**
+```bash
+# Check Railway build logs
+railway logs
+
+# Common fixes:
+# 1. Ensure Node.js version is 18+
+# 2. Check if all dependencies are in package.json
+# 3. Verify Procfile exists and is correct
 ```
+
+**❌ MongoDB Connection Fails:**
+```bash
+# In Railway dashboard:
+# 1. Add MONGODB_URI variable
+# 2. Ensure MongoDB Atlas IP whitelist includes 0.0.0.0/0
+# 3. Check database user permissions
+```
+
+**❌ Port Binding Issues:**
+```bash
+# Railway automatically assigns PORT
+# Your app uses process.env.PORT (already configured)
+# No need to hardcode port 5000
+```
+
+**❌ Missing Environment Variables:**
+```bash
+# In Railway dashboard, add all variables from:
+# backend/.env.railway template
+# Required: MONGODB_URI, JWT_SECRET, OPENAI_API_KEY
+# Optional: Email, Stripe, social media keys
+```
+
+**✅ Railway Deployment Commands:**
+```bash
+# Check deployment status
+railway status
+
+# View logs
+railway logs
+
+# Open app in browser
+railway open
+
+# Redeploy
+railway up
+```
+
+#### **Step 3: Verify Deployment**
+1. **Check Railway app** is running (green dot)
+2. **Visit Railway URL** - should show "Cannot GET /" (normal for API)
+3. **Check Netlify build** completed successfully
+4. **Test API calls** from Netlify frontend
 
 ### **Option 2: Heroku (Full Stack)**
 
